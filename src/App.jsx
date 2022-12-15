@@ -5,6 +5,57 @@ import { Sidebar } from './components/Sidebar'
 import styles from './App.module.css'
 import './styles.css'
 
+const posts = [
+  {
+    id: 1,
+    author: {
+      avatarUrl: 'https://github.com/miqueiasousa.png',
+      name: 'Miqueias Sousa',
+      role: 'Web Developer'
+    },
+    content: [
+      {
+        type: 'paragraph',
+        content: 'Fala galeraa 👋'
+      },
+      {
+        type: 'paragraph',
+        content:
+          'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀'
+      },
+      {
+        type: 'link',
+        content: 'jane.design/doctorcare'
+      }
+    ],
+    publishedAt: new Date('2022-05-03 20:00:00')
+  },
+  {
+    id: 2,
+    author: {
+      avatarUrl: 'https://github.com/diego3g.png',
+      name: 'Diego Fernandes',
+      role: 'CTO @Rocketseat'
+    },
+    content: [
+      {
+        type: 'paragraph',
+        content: 'Fala galeraa 👋'
+      },
+      {
+        type: 'paragraph',
+        content:
+          'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀'
+      },
+      {
+        type: 'link',
+        content: 'jane.design/doctorcare'
+      }
+    ],
+    publishedAt: new Date('2022-05-10 13:00:00')
+  }
+]
+
 function App() {
   return (
     <div>
@@ -12,14 +63,14 @@ function App() {
       <div className={styles.wrapper}>
         <Sidebar />
         <main>
-          <Post
-            author="Miqueias Sousa"
-            content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus laborum et recusandae. Molestias quisquam aliquam culpa vitae fugit sed facilis, itaque minima ipsum deserunt. Veniam facilis autem modi numquam dolorem!"
-          />
-          <Post
-            author="Diego Fernandes"
-            content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos repellendus velit, quia accusamus placeat eaque aliquid id esse animi sint et ducimus possimus unde pariatur cumque totam porro exercitationem nobis!"
-          />
+          {posts.map(post => (
+            <Post
+              key={post.id}
+              author={post.author}
+              content={post.content}
+              publishedAt={post.publishedAt}
+            />
+          ))}
         </main>
       </div>
     </div>
