@@ -21,14 +21,14 @@ export function Comment({ content, onDeleteComment }) {
                 Cerca de 1h atrás
               </time>
             </div>
-            <button title="Deletar comentário">
+            <button title="Deletar comentário" onClick={handleDeleteComment}>
               <Trash size={24} />
             </button>
           </header>
           <p>{content}</p>
         </div>
         <footer>
-          <button onClick={handleDeleteComment}>
+          <button>
             <ThumbsUp size={24} />
             Aplaudir <span>20</span>
           </button>

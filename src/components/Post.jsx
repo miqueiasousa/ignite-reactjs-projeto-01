@@ -34,7 +34,9 @@ export function Post({ author, content, publishedAt }) {
     setComment('')
   }
 
-  function deleteComment(comment) {}
+  function deleteComment(commentToDelete) {
+    setComments(comments.filter(comment => comment !== commentToDelete))
+  }
 
   return (
     <article className={styles.post}>
