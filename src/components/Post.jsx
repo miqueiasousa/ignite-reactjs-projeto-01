@@ -10,6 +10,7 @@ import styles from './Post.module.css'
 export function Post({ author, content, publishedAt }) {
   const [comments, setComments] = useState([])
   const [comment, setComment] = useState('')
+  const isCommentEmpty = comment.length === 0
 
   const publishedDateFormatted = format(
     publishedAt,
@@ -24,6 +25,7 @@ export function Post({ author, content, publishedAt }) {
   })
 
   function handleNewCommentChange(event) {
+    event.target.setCustomValidity('')
     setComment(event.target.value)
   }
 
@@ -36,6 +38,10 @@ export function Post({ author, content, publishedAt }) {
 
   function deleteComment(commentToDelete) {
     setComments(comments.filter(comment => comment !== commentToDelete))
+  }
+
+  function handleNewCommentInvalid(event) {
+    event.target.setCustomValidity('Esse campo é obrigatório!')
   }
 
   return (
@@ -77,9 +83,13 @@ export function Post({ author, content, publishedAt }) {
           value={comment}
           placeholder="Escreva um comentário..."
           onChange={handleNewCommentChange}
+          onInvalid={handleNewCommentInvalid}
+          required
         />
         <footer>
-          <button type="submit">Publicar</button>
+          <button type="submit" disabled={isCommentEmpty}>
+            Publicar
+          </button>
         </footer>
       </form>
       {comments.length > 0 && (
